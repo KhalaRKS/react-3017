@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from 'react';
-import { AlumnosContext } from './context/alumnos';
+import { AlumnosContext } from '../context/alumnos';
 
 //              state   {type: "increment"}
 const reducer = (state, action) => {
