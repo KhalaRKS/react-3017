@@ -1,4 +1,5 @@
 import React from 'react';
+import { CategoryWidget } from '../../components/categories/category_widget/category_widget';
 import { Footer } from '../../components/footer/footer';
 import { Header } from '../../components/header/header';
 import { Navbar } from '../../components/navbar/navbar';
@@ -11,8 +12,7 @@ export const HomeScreen = () => {
       <Navbar />
       <HomeLayout>
         <Header />
-        {/* <CategoryWidget /> */}
-        {/* <ProductCard/> */}
+        <CategoryWidget/>
         <ProductWidget />
       </HomeLayout>
       <Footer />

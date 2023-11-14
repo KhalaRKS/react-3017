@@ -1,14 +1,15 @@
 import { categories } from "../../../data/categories"
 import { CategoryCard } from "../category_card/category_card"
+import { CategoriasContainer, CategoriasWrapper } from "./styles"
 export const CategoryWidget = () => {
   return (
-    <div>
+    <CategoriasWrapper>
         <h2>Categorias</h2>
-        <div>
+        <CategoriasContainer>
           {
             categories.map((item) => <CategoryCard key={item.id} {...item}/>)
           }  
-        </div>
-    </div>
+        </CategoriasContainer>
+    </CategoriasWrapper>
   )
 }
