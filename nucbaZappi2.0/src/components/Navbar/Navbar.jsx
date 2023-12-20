@@ -18,15 +18,15 @@ import {
   UserContainerStyled,
   SpanStyled,
 } from './NavbarStyles';
-
+import {useDispatch, useSelector} from 'react-redux'
+import { toggleMenuHidden } from '../../redux/user/userSlice';
 function Navbar() {
-  const [hiddenCart, setHiddenCart] = useState(true);
-
   const navigate = useNavigate();
-
+  const {currentUser} = useSelector(state => state.user)
+const dispatch = useDispatch();
   return (
     <NavbarContainerStyled>
-      <ModalCart hiddenCart={hiddenCart} setHiddenCart={setHiddenCart} />
+      <ModalCart />
       <ModalUser />
       <div>
         <Link to='/'>
@@ -47,12 +47,14 @@ function Navbar() {
         </motion.div>
 
         <CartNavStyled>
-          <CartIcon hiddenCart={hiddenCart} setHiddenCart={setHiddenCart} />
+          <CartIcon/>
         </CartNavStyled>
 
         <UserNavStyled>
-          <UserContainerStyled onClick={() => navigate('/register')}>
-            <SpanStyled>Inicia sesión</SpanStyled>
+          <UserContainerStyled onClick={() => currentUser ? dispatch(toggleMenuHidden()) : navigate('/register')}>
+            <SpanStyled>
+              {currentUser ? `${currentUser.nombre}`: `Inicia Sesión`}
+            </SpanStyled>
             <FaUserAlt />
           </UserContainerStyled>
         </UserNavStyled>

@@ -11,8 +11,10 @@ import {
   CardTitle,
   InfoCard,
 } from './CardsRecomendacionStyled';
-
-const CardRecomendacion = ({img, title, desc, price}) => {
+import {useDispatch} from 'react-redux'
+import { addToCart } from '../../redux/cart/cartSlice';
+const CardRecomendacion = ({img, title, desc, price, id}) => {
+  const dispatch = useDispatch();
   return (
     <Card>
       <CardImg
@@ -24,7 +26,7 @@ const CardRecomendacion = ({img, title, desc, price}) => {
         <InfoCard>{desc}</InfoCard>
         <CardPrice>{formatPrice(price)}</CardPrice>
       </CardText>
-      <Button onClick={e => e.preventDefault()}>Agregar</Button>
+      <Button onClick={() => dispatch(addToCart({img, title, desc, price, id}))}>Agregar</Button>
     </Card>
   );
 };

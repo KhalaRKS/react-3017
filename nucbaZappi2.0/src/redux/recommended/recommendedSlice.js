@@ -32,7 +32,7 @@ export const recommendedSlice = createSlice({
 })
 
 
-export const {randomRecommended} = recommendedSlice.reducer
+export const {randomRecommended} = recommendedSlice.actions
 
 export default recommendedSlice.reducer
 

@@ -15,28 +15,30 @@ import {
   PriceStyled,
   QuantityContainerStyled,
 } from './ModalCartStyles';
-
-const ModalCartCard = () => {
+import {useDispatch} from 'react-redux'
+import { removeFromCart, addToCart } from '../../../redux/cart/cartSlice';
+const ModalCartCard = ({img,title, desc,price, quantity, id}) => {
+  const dispatch = useDispatch()
   return (
     <ProductContainerStyled>
       <img
-        src='https://res.cloudinary.com/dcatzxqqf/image/upload/v1656648456/coding/NucbaZappi/Productos/muzza-mentolada_fmh9at.png'
-        alt='La Aco'
+        src={img}
+        alt={title}
       />
       <TextContainerStyled>
-        <CardTitleStyled>La Aco</CardTitleStyled>
-        <TextStyled>Cheta la gorra</TextStyled>
-        <PriceStyled>{formatPrice(3000)}</PriceStyled>
+        <CardTitleStyled>{title}</CardTitleStyled>
+        <TextStyled>{desc}</TextStyled>
+        <PriceStyled>{formatPrice(price)}</PriceStyled>
       </TextContainerStyled>
       <QuantityContainerStyled>
         <Increase
           bgColor='var(--btn-gradient-secondary)'
-          onClick={e => e.preventDefault()}
+          onClick={e => dispatch(removeFromCart(id))}
         >
           <FaMinus />
         </Increase>
-        <Count>3</Count>
-        <Increase onClick={e => e.preventDefault()}>
+        <Count>{quantity}</Count>
+        <Increase onClick={e => dispatch(addToCart({img,title, desc,price, quantity, id}))}>
           <BsPlusLg />
         </Increase>
       </QuantityContainerStyled>
